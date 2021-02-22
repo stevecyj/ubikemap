@@ -9,6 +9,9 @@
           <div class="flex-fill">
             <select name="" id="city" class="form-control">
               <!-- 製作下拉選單 -->
+              <option :value="" :key="" v-for="">
+                {{}}
+              </option>
             </select>
           </div>
         </div>
@@ -31,8 +34,14 @@
 </template>
 
 <script>
+import cityName from './assets/cityName.json';
+
 export default {
   name: 'App',
+  data: () => ({
+    cityName,
+    select,
+  }),
 };
 </script>
 
