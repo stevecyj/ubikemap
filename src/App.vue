@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <button type="button" class="btn btn-primary">Primary</button>
+    <!-- <button type="button" class="btn btn-primary">Primary</button> -->
     <div class="row no-gutters">
       <!-- 選擇地區 -->
       <div class="toolbox col-sm-3 p-2 bg-white">
         <div class="form-group d-flex">
           <label for="city" class="col-form-label mr-2 text-right">縣市</label>
           <div class="flex-fill">
-            <select name="" id="city" class="form-control">
+            <select name="" id="city" class="form-control" v-model="select.city">
               <!-- 製作下拉選單 -->
-              <option :value="" :key="" v-for="">
-                {{}}
+              <option :value="city.name" :key="city.name" v-for="city in cityName">
+                {{ city.name }}
               </option>
             </select>
           </div>
@@ -18,8 +18,14 @@
         <div class="form-group d-flex">
           <label for="dist" class="col-form-label mr-2 text-right">地區</label>
           <div class="flex-fill">
-            <select name="" id="dist" class="form-control">
+            <select name="" id="dist" class="form-control" v-model="select.dist">
               <!-- 製作下拉選單 -->
+              <option
+                :value="dist.name"
+                :key="dist.name"
+                v-for="dist in cityName.find(city => city.name === select.city).districts"
+                >{{ dist.name }}</option
+              >
             </select>
           </div>
         </div>
@@ -40,7 +46,10 @@ export default {
   name: 'App',
   data: () => ({
     cityName,
-    select,
+    select: {
+      city: '臺北市',
+      dist: '中正區',
+    },
   }),
 };
 </script>
