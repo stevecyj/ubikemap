@@ -74,8 +74,16 @@ export default {
       });
 
       // add marker on map
+      /* eslint-disable */
       this.youbikes.forEach((bike) => {
-        L.marker([bike.lat, bike.lng]).addTo(this.OSMap);
+        L.marker([bike.lat, bike.lng])
+          .bindPopup(
+            `<p><strong style="font-size: 20px;">${bike.sna}</strong></p>
+            <strong style="font-size: 16px; color: #d45345;">可租借車輛剩餘：${bike.sbi} 台</strong></br>
+            可停空位剩餘： ${bike.bemp}</br>
+            <small>最後更新時間： ${bike.mday}</small>`
+          )
+          .addTo(this.OSMap);
       });
 
       // move to new center
