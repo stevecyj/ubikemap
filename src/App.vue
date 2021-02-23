@@ -23,7 +23,7 @@
               <option
                 :value="dist.name"
                 :key="dist.name"
-                v-for="dist in cityName.find(city => city.name === select.city).districts"
+                v-for="dist in cityName.find((city) => city.name === select.city).districts"
                 >{{ dist.name }}</option
               >
             </select>
@@ -51,6 +51,12 @@ export default {
       dist: '中正區',
     },
   }),
+  created() {
+    const api = 'https://tcgbusfs.blob.core.windows.net/blobyoubike/YouBikeTP.json';
+    this.$http.get(api).then((response) => {
+      console.log(response.data);
+    });
+  },
 };
 </script>
 
